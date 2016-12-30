@@ -28,7 +28,7 @@ scanloop(){
 
 while true; do 
 	echo "$(date) Starting scan"
-	nmap -PN -p 21 -vv -oG scan.gnmap -T5 -n 151.217.0/16 >/dev/null
+	nmap -Pn -p 21,2121,2122,80,81,88,8080 -vv -oG scan.gnmap -T5 -n 151.217.0/16 >/dev/null
 	submit scan.gnmap
 	echo "$(date) Scan ended"
 	for ip in $(awk '/21\/open/{print $2}' scan.gnmap ); do
